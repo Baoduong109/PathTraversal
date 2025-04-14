@@ -281,9 +281,9 @@ if (strpos($path, $base) !== 0) {
 
 Cấu hình web server:
 
-Apache: ``Options -Indexes``
+- Apache: ``Options -Indexes``
 
-Nginx: ``autoindex off``;
+- Nginx: ``autoindex off``;
 
 **6. Bảo vệ file cấu hình và nhạy cảm**
 
