@@ -111,7 +111,7 @@ Một số chức năng trong Web hay xuất hiện lỗ hổng này:
 
 URL/parameter khả nghi: Những param như ```file=```, ```path=```, ```download=```, ```img=```, ```lang=```, ```doc=```, ```page=```, v.v.
 
-Dấu hiệu trên giao diện:
+**Dấu hiệu trên giao diện:**
 
 Ứng dụng cho phép tải, xem file, đổi ngôn ngữ, hiển thị template…
 
@@ -126,7 +126,7 @@ Xuất hiện lỗi như: ```file not found```, ```no such file```, ```failed to
 ```
 Dùng công cụ như Burp Suite (Intruder) để fuzz các param nghi ngờ.
 
-✅ **Dấu hiệu thành công:**
+ **Dấu hiệu thành công:**
 Trả về nội dung file hệ thống ```(root:x:0:0:...)```
 
 Báo lỗi liên quan đến đường dẫn thực ```(open(/etc/passwd) failed)```
