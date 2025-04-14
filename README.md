@@ -109,13 +109,13 @@ Một số chức năng trong Web hay xuất hiện lỗ hổng này:
 **1.1. Trường hợp không có mã nguồn (Black-box Testing)**
 **Nhận diện điểm nghi ngờ:**
 
-URL/parameter khả nghi: Những param như ```file=```, ```path=```, ```download=```, ```img=```, ```lang=```, ```doc=```, ```page=```, v.v.
+- URL/parameter khả nghi: Những param như ```file=```, ```path=```, ```download=```, ```img=```, ```lang=```, ```doc=```, ```page=```, v.v.
 
 **Dấu hiệu trên giao diện:**
 
-Ứng dụng cho phép tải, xem file, đổi ngôn ngữ, hiển thị template…
+- Ứng dụng cho phép tải, xem file, đổi ngôn ngữ, hiển thị template…
 
-Xuất hiện lỗi như: ```file not found```, ```no such file```, ```failed to open```, v.v.
+- Xuất hiện lỗi như: ```file not found```, ```no such file```, ```failed to open```, v.v.
 
 **Kỹ thuật kiểm thử:**
 **Gửi payloads:**
@@ -127,11 +127,11 @@ Xuất hiện lỗi như: ```file not found```, ```no such file```, ```failed to
 Dùng công cụ như Burp Suite (Intruder) để fuzz các param nghi ngờ.
 
  **Dấu hiệu thành công:**
-Trả về nội dung file hệ thống ```(root:x:0:0:...)```
+- Trả về nội dung file hệ thống ```(root:x:0:0:...)```
 
-Báo lỗi liên quan đến đường dẫn thực ```(open(/etc/passwd) failed)```
+- Báo lỗi liên quan đến đường dẫn thực ```(open(/etc/passwd) failed)```
 
-Stack trace chỉ ra vị trí sử dụng hàm file như ```open()```, ```fopen()```...
+- Stack trace chỉ ra vị trí sử dụng hàm file như ```open()```, ```fopen()```...
 
 **1.2. Trường hợp có mã nguồn (White-box Testing)**
 **Phân tích luồng dữ liệu:**
@@ -164,9 +164,9 @@ semgrep --config "p/php.lang.security.path-traversal" .
 ```
 
 **Dấu hiệu dễ khai thác:**
-Không có ```basename()```, ```realpath()```, kiểm tra whitelist trước khi truy cập file.
+- Không có ```basename()```, ```realpath()```, kiểm tra whitelist trước khi truy cập file.
 
-Kết hợp trực tiếp dữ liệu người dùng với đường dẫn tương đối hoặc tuyệt đối.
+- Kết hợp trực tiếp dữ liệu người dùng với đường dẫn tương đối hoặc tuyệt đối.
 
 #### 2. Phương pháp tự động
 **2.1. Dùng công cụ scan truyền thống**
@@ -186,9 +186,9 @@ Kết hợp trực tiếp dữ liệu người dùng với đường dẫn tươ
 ```
 
 **Ưu điểm:**
-Phát hiện nhanh các điểm yếu phổ biến.
+- Phát hiện nhanh các điểm yếu phổ biến.
 
-Dễ sử dụng, tích hợp CI/CD.
+- Dễ sử dụng, tích hợp CI/CD.
 
 **Hạn chế:**
 Dễ bypass nếu ứng dụng encode, normalize hoặc kiểm tra sâu.
@@ -198,17 +198,17 @@ Dễ bypass nếu ứng dụng encode, normalize hoặc kiểm tra sâu.
 Huấn luyện mô hình để phân loại truy vấn độc hại chứa path traversal dựa trên đặc trưng request.
 
 Đặc trưng có thể sử dụng:
-Tần suất xuất hiện: ```../```, ``%2e``, ``%2f``, ký tự đặc biệt.
+- Tần suất xuất hiện: ```../```, ``%2e``, ``%2f``, ký tự đặc biệt.
 
-Độ dài chuỗi.
+- Độ dài chuỗi.
 
-Loại HTTP method (```GET```/```POST```).
+- Loại HTTP method (```GET```/```POST```).
 
-Thời gian phản hồi (response time).
+- Thời gian phản hồi (response time).
 
-Mã phản hồi HTTP (200, 403, 500…).
+- Mã phản hồi HTTP (200, 403, 500…).
 
-Các đặc trưng thống kê hoặc embedding chuỗi URL.
+- Các đặc trưng thống kê hoặc embedding chuỗi URL.
 
 Mô hình áp dụng:
 - Supervised:
@@ -238,11 +238,11 @@ Có thể lấy từ:
 
  **1. Kiểm tra và lọc đầu vào (Input Validation & Sanitization)**
  
-Không bao giờ tin tưởng dữ liệu từ người dùng, kể cả từ cookies, headers hay params.
+- Không bao giờ tin tưởng dữ liệu từ người dùng, kể cả từ cookies, headers hay params.
 
-Loại bỏ hoặc mã hóa các chuỗi ``../``, ``..\``, ``%2e%2e/``, v.v.
+- Loại bỏ hoặc mã hóa các chuỗi ``../``, ``..\``, ``%2e%2e/``, v.v.
 
-Dùng whitelist – chỉ cho phép tên file hợp lệ (ví dụ: ```[a-zA-Z0-9_\-\.]```).
+- Dùng whitelist – chỉ cho phép tên file hợp lệ (ví dụ: ```[a-zA-Z0-9_\-\.]```).
 
 Ví dụ bằng PHP:
 
@@ -251,7 +251,7 @@ $filename = basename($_GET['file']); // loại bỏ ../
 ```
 **2. Giới hạn thư mục truy cập (Directory Whitelisting / Chroot Jail)**
 
-Giới hạn việc truy cập tập tin vào một thư mục cụ thể:
+- Giới hạn việc truy cập tập tin vào một thư mục cụ thể:
 
 ```
 $base = realpath('/var/www/uploads');
@@ -265,17 +265,17 @@ if (strpos($path, $base) !== 0) {
 
 **3. Phân quyền hệ thống file (File System Permissions)**
 
-Chạy ứng dụng web bằng user không có quyền root/admin.
+- Chạy ứng dụng web bằng user không có quyền root/admin.
 
-Đảm bảo user web (như ```www-data```, ```nginx```, ```apache```) chỉ có quyền đọc/thực thi thư mục cần thiết.
+- Đảm bảo user web (như ```www-data```, ```nginx```, ```apache```) chỉ có quyền đọc/thực thi thư mục cần thiết.
 
-Không cấp quyền ghi/đọc toàn bộ hệ thống file trừ khi bắt buộc.
+- Không cấp quyền ghi/đọc toàn bộ hệ thống file trừ khi bắt buộc.
 
 **4. Sử dụng thư viện xử lý file an toàn**
 
-Tránh ``fopen()``, ``file_get_contents()`` với đầu vào không kiểm soát.
+- Tránh ``fopen()``, ``file_get_contents()`` với đầu vào không kiểm soát.
 
-Sử dụng các API nội bộ hoặc frameworks có xử lý an toàn đường dẫn (VD: ``Symfony Filesystem``, ``Node.js``, ``path.join``...).
+- Sử dụng các API nội bộ hoặc frameworks có xử lý an toàn đường dẫn (VD: ``Symfony Filesystem``, ``Node.js``, ``path.join``...).
 
 **5. Tắt liệt kê thư mục (Disable Directory Listing)**
 
@@ -289,7 +289,7 @@ Nginx: ``autoindex off``;
 
 ``.htaccess``, ``.env``, ``config.php``, v.v. cần được bảo vệ kỹ:
 
-Không lưu trong thư mục có thể truy cập trực tiếp từ web.
+- Không lưu trong thư mục có thể truy cập trực tiếp từ web.
 
 Cấu hình deny trong web server:
 ```
@@ -299,15 +299,15 @@ Cấu hình deny trong web server:
 ```
 **7. Ghi log và giám sát**
 
-Ghi lại các truy vấn chứa dấu hiệu như ``../``, ``%2e%2e``, hoặc truy cập file lạ.
+- Ghi lại các truy vấn chứa dấu hiệu như ``../``, ``%2e%2e``, hoặc truy cập file lạ.
 
-Cảnh báo qua IDS hoặc SIEM khi có hành vi bất thường.
+- Cảnh báo qua IDS hoặc SIEM khi có hành vi bất thường.
 
 **8. Sử dụng WAF / IDS / AI để phát hiện và chặn**\
 
-Sử dụng Web Application Firewall (ModSecurity, AWS WAF, Cloudflare...) để chặn mẫu tấn công phổ biến.
+- Sử dụng Web Application Firewall (ModSecurity, AWS WAF, Cloudflare...) để chặn mẫu tấn công phổ biến.
 
-Tích hợp AI để học các mẫu truy cập bình thường và cảnh báo khi có bất thường.
+- Tích hợp AI để học các mẫu truy cập bình thường và cảnh báo khi có bất thường.
 
 **9. Kiểm thử định kỳ**
 
