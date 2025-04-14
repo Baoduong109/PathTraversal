@@ -124,7 +124,7 @@ Một số chức năng trong Web hay xuất hiện lỗ hổng này:
 ..%2F..%2Fetc%2Fpasswd
 ..%c0%af..%c0%afetc%c0%afpasswd
 ```
-Dùng công cụ như Burp Suite (Intruder) để fuzz các param nghi ngờ.
+- Dùng công cụ như Burp Suite (Intruder) để fuzz các param nghi ngờ.
 
  **Dấu hiệu thành công:**
 - Trả về nội dung file hệ thống ```(root:x:0:0:...)```
