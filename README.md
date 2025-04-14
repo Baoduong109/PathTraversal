@@ -323,7 +323,7 @@ Dùng các công cụ như:
 
 - Thường xuyên kiểm tra và cập nhật mã nguồn.
 
-<--- Nơi render ảnh để lấy đường link chèn vào bài viết--->
+<---------------------------------------------- Nơi render ảnh để lấy đường link chèn vào bài viết---------------------------------------------->
 
 <p align="center">
 <img width="801" alt="Ảnh chụp Màn hình 2025-03-31 lúc 15 12 58" src="https://github.com/user-attachments/assets/80908bfd-52bf-4aad-9b5d-fe9121f9ce5a" />
